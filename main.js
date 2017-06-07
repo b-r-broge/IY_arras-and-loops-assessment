@@ -3,8 +3,8 @@
 var sports = ['soccer', 'baseball'];
 var total = sports.push('football', 'swimming');
 // A:
-// sports = <your answer>
-// total = <your answer>
+// sports = ['soccer', 'baseball', 'football', 'swimming']
+// total = ['soccer', 'baseball', 'football', 'swimming']
 
 
 // 2.
@@ -12,7 +12,15 @@ var total = sports.push('football', 'swimming');
 // that accepts an array argument and returns the longest string in the array
 var strings = ['this','is','a','collection','of','words'];
 // A:
-
+function longestString (arr) {
+  let longest = "";
+  for (let i = 0; i < strings.length; i++) {
+    if (arr[i].length > longest.length) {
+      longest = arr[i];
+    }
+  }
+  return longest
+}
 
 console.assert(longestString(strings) === 'collection', {"message": "longestString should return 'collection'"});
 
@@ -25,7 +33,15 @@ var numbers = [1,12,4,18,9,7,11,3,101,5,6];
 // Write a function `smallestNumber()` that accepts an array
 // and returns the smallest number in the array.
 // A:
-
+function smallestNumber(arr) {
+  return arr.reduce(function(a, b) {
+    if (a < b) {
+      return a;
+    } else {
+      return b;
+    }
+  })
+}
 
 console.assert(smallestNumber(numbers) === 1, {"message": "smallestNumber should return 1"});
 
@@ -34,7 +50,13 @@ console.assert(smallestNumber(numbers) === 1, {"message": "smallestNumber should
 // Write a function `getEvens()` that accepts an array
 // and returns only the even numbers in the array.
 // A:
-
+function getEvens(arr) {
+  return arr.filter(function(a) {
+    if (a % 2 === 0 ) {
+      return a;
+    }
+  });
+}
 
 console.assert(getEvens(numbers).toString() === '12,4,18,6', {'message': 'getEvens should return "12,4,18,6"'});
 
@@ -45,6 +67,14 @@ console.assert(getEvens(numbers).toString() === '12,4,18,6', {'message': 'getEve
 // Hint: When looping over the array, start at the last index
 // and decrement the iterator to zero
 // A:
+function arrayReverser(arr) {
+  let out = []
+  for (let i = arr.length -1 ; i >= 0 ; i--) {
+    let next = arr[i]
+    out.push(next);
+  }
+  return out
+}
 
 
 console.assert(arrayReverser(numbers).toString() === '6,5,101,3,11,7,9,18,4,12,1', {'message': 'arrayReverser should return "6,5,101,3,11,7,9,18,4,12,1"'});
@@ -54,7 +84,9 @@ console.assert(arrayReverser(numbers).toString() === '6,5,101,3,11,7,9,18,4,12,1
 // Write a function that accepts an array argument
 // and returns the sum of all of the numbers in the array
 // A:
-
+function sumArrayOfNumbers(arr) {
+  return arr.reduce((a, b) => (a + b));
+}
 
 console.assert(sumArrayOfNumbers(numbers) === 177, {'message': 'sumArrayOfNumbers should return 177'});
 
@@ -63,7 +95,13 @@ console.assert(sumArrayOfNumbers(numbers) === 177, {'message': 'sumArrayOfNumber
 // Write a function that accepts an array argument
 // and returns an array of only the numbers greater than 10
 // A:
-
+function numbersOver10(arr) {
+  return arr.filter(function(a) {
+    if (a > 10) {
+      return a;
+    }
+  });
+}
 
 console.assert(numbersOver10(numbers).toString() === "12,18,11,101", {'message': 'numbersOver10 should return "12,18,11,101"'});
 
@@ -72,7 +110,13 @@ console.assert(numbersOver10(numbers).toString() === "12,18,11,101", {'message':
 // Write a function that accepts both an array and number argument
 // and returns an array of only the numbers greater than the number passed to the function
 // A:
-
+function numbersOverX(arr, n) {
+  return arr.filter(function(a) {
+    if (a > n) {
+      return a;
+    }
+  });
+}
 
 console.assert(numbersOverX(numbers, 15).toString() === "18,101", {'message': 'numbersOverX should return "18,101"'});
 
@@ -82,8 +126,16 @@ console.assert(numbersOverX(numbers, 15).toString() === "18,101", {'message': 'n
 // listed after the contents of the first array
 var numbers = [1,12,4,18,9,7,11,3,101,5,6];
 var numbersTwo = [33,56,72,2,5,66,90,21,42];
-// A:
-
+// A: this is behaving very strangely for me, when I run it, it puts both arrays
+// A: into the 'a' parameter, and leaves b undefined.  Not sure why.
+function joinArrays(a, b) {
+  b = a[1]
+  a = a[0]
+  for ( let i = 0; i <b.length; i++ ) {
+    a.push(b[i]);
+  }
+  return a;
+}
 
 console.assert(joinArrays([numbers, numbersTwo]).toString() === '1,12,4,18,9,7,11,3,101,5,6,33,56,72,2,5,66,90,21,42', {'message': 'joinArrays should return "1,12,4,18,9,7,11,3,101,5,6,33,56,72,2,5,66,90,21,42"'});
 
@@ -102,13 +154,13 @@ var instructors = [
 ];
 
 var instructorNameDiscipline = instructors[5];
-// greenvIlleInstructor = <your answer>
+// instructorNameDiscipline = ['Will','JavaScript']
 
 var instructorOne = instructors[4][0];
-// instructorOne = <your answer>
+// instructorOne = 'Dan'
 
 var instructorTwo = instructors[0][1];
-// instructorTwo = <your answer>
+// instructorTwo = 'Javascript'
 
 var instructorThree = instructors[2][0];
-// instructorThree = <your answer>
+// instructorThree = 'Brit'
